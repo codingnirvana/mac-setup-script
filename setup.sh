@@ -4,19 +4,15 @@ brews=(
   archey
   bash
   caskroom/cask/brew-cask
-  clib
-  dfc
   git
   git-extras
   htop
   httpie
   mackup
-  macvim
   mtr
   node
+  openvpn
   nmap
-  postgresql
-  pgcli
   python
   ruby
   scala
@@ -24,11 +20,11 @@ brews=(
   tmux
   wget
   zsh
+  tree
 )
 
 casks=(
   adobe-reader
-  airdroid
   asepsis
   atom
   betterzipql
@@ -36,35 +32,23 @@ casks=(
   chromecast
   cleanmymac
   dropbox
+  firefox
+  freemind
   google-chrome
   google-drive
   github
   hosts
-  firefox
-  handbrake
-  intellij-idea
-  istat-menus
-  istat-server
-  qlcolorcode
-  qlmarkdown
-  qlstephen
-  quicklook-json
-  quicklook-csv
+  intellij-idea-ce
+  iterm2
+  kindle
+  picasa  
   java
-  launchrocket
-  plex-home-theater
-  plex-media-server
-  private-eye
-  satellite-eyes
-  sidekick
   slack
-  spotify
-  steam
+  screenhero
+  skype
+  todoist
   teleport
-  transmission
-  transmission-remote-gui
   vlc
-  zeroxdbe-eap
 )
 
 pips=(
@@ -74,15 +58,11 @@ pips=(
 
 gems=(
   git-up
-  travis
 )
 
 npms=(
   coffee-script
-  fenix-cli
-  gitjk
   grunt
-  trash
 )
 
 clibs=(
@@ -165,7 +145,7 @@ echo "Setting git defaults ..."
 git config --global rerere.enabled true
 git config --global branch.autosetuprebase always
 git config --global credential.helper osxkeychain
-git config --global user.email pathikritbhowmick@msn.com
+git config --global user.email mrajesh123@gmail.com
 
 echo "Upgrading ..."
 pip install --upgrade setuptools

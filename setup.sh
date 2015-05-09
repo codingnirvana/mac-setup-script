@@ -3,7 +3,7 @@
 brews=(
   archey
   bash
-  caskroom/cask/brew-cask
+  brew-cask
   git
   git-extras
   htop
@@ -49,6 +49,7 @@ casks=(
   todoist
   teleport
   vlc
+  tunnelblick	
 )
 
 pips=(

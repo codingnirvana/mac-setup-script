@@ -41,7 +41,7 @@ casks=(
   intellij-idea-ce
   iterm2
   kindle
-  picasa  
+  picasa
   java
   slack
   screenhero
@@ -49,7 +49,7 @@ casks=(
   todoist
   teleport
   vlc
-  tunnelblick	
+  tunnelblick
 )
 
 pips=(
@@ -146,7 +146,8 @@ echo "Setting git defaults ..."
 git config --global rerere.enabled true
 git config --global branch.autosetuprebase always
 git config --global credential.helper osxkeychain
-git config --global user.email mrajesh123@gmail.com
+git config --global user.name $1
+git config --global user.email $2
 
 echo "Upgrading ..."
 pip install --upgrade setuptools

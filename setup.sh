@@ -3,12 +3,10 @@
 brews=(
   archey
   bash
-  brew-cask
   git
   git-extras
   htop
   httpie
-  mackup
   mtr
   node
   openvpn
@@ -21,22 +19,20 @@ brews=(
   wget
   zsh
   tree
+  s3cmd
 )
 
 casks=(
   adobe-reader
-  asepsis
   atom
   betterzipql
   cakebrew
-  chromecast
   cleanmymac
   dropbox
   firefox
   freemind
   google-chrome
   google-drive
-  github
   hosts
   intellij-idea-ce
   iterm2
@@ -46,13 +42,14 @@ casks=(
   slack
   screenhero
   skype
-  todoist
   teleport
   vlc
   tunnelblick
+  sublime-text
 )
 
 pips=(
+  s4cmd
   Glances
   pythonpy
 )
@@ -125,9 +122,12 @@ brew info ${brews[@]}
 proceed_prompt
 install 'brew install' ${brews[@]}
 
+brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
+
 brew cask info ${casks[@]}
 proceed_prompt
-install 'brew cask install --appdir="/Applications"' ${casks[@]}
+install 'brew cask install --appdir=/Applications' ${casks[@]}
 
 # TODO: add info part of install
 install 'pip install' ${pips[@]}

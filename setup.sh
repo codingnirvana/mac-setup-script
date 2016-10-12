@@ -20,6 +20,8 @@ brews=(
   zsh
   tree
   s3cmd
+  wget
+  maven
 )
 
 casks=(
@@ -46,6 +48,7 @@ casks=(
   vlc
   tunnelblick
   sublime-text
+  utorrent
 )
 
 pips=(

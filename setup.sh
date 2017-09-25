@@ -15,7 +15,7 @@ brews=(
   nmap
   python
   ruby
-  scala
+  scala211
   sbt
   tmux
   zsh
@@ -75,7 +75,6 @@ vscode=(
 
 ######################################## End of app list ########################################
 set +e
-set -x
 
 
 if test ! $(which brew); then
@@ -124,62 +123,62 @@ function proceed_prompt {
   fi
 }
 
-# echo "Install Java"
-# brew cask install java
+echo "Install Java"
+brew cask install java8
 
-# brew info ${brews[@]}
-# proceed_prompt
-# install 'brew install' ${brews[@]}
+brew info ${brews[@]}
+proceed_prompt
+install 'brew install' ${brews[@]}
 
-# brew install caskroom/cask/brew-cask
-# brew tap caskroom/versions
+brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
 
-# brew cask info ${casks[@]}
-# proceed_prompt
-# install 'brew cask install --appdir=/Applications' ${casks[@]}
+brew cask info ${casks[@]}
+proceed_prompt
+install 'brew cask install --appdir=/Applications' ${casks[@]}
 
 echo "Install pip"
 install 'easy_install pip'
 
 # TODO: add info part of install
 install 'pip install' ${pips[@]}
-# install 'gem install' ${gems[@]}
-# install 'npm install -g' ${npms[@]}
-# install 'code --install-extension' ${vscode[@]}
+install 'gem install' ${gems[@]}
+install 'npm install -g' ${npms[@]}
+install 'code --install-extension' ${vscode[@]}
 
-# echo "Setting up zsh ..."
-# curl -L http://install.ohmyz.sh | sh
-# chsh -s $(which zsh)
-# # TODO: Auto-set theme to "fino-time" in ~/.zshrc (using antigen?)
-# curl -sSL https://get.rvm.io | bash -s stable  # required for some zsh-themes
+echo "Setting up zsh ..."
+curl -L http://install.ohmyz.sh | sh
+chsh -s $(which zsh)
+# TODO: Auto-set theme to "fino-time" in ~/.zshrc (using antigen?)
+curl -sSL https://get.rvm.io | bash -s stable  # required for some zsh-themes
 
-# echo "Setting git defaults ..."
-# git config --global rerere.enabled true
-# git config --global branch.autosetuprebase always
-# git config --global credential.helper osxkeychain
-# git config --global user.name $1
-# git config --global user.email $2
+echo "Setting git defaults ..."
+git config --global rerere.enabled true
+git config --global branch.autosetuprebase always
+git config --global credential.helper osxkeychain
+git config --global user.name $1
+git config --global user.email $2
 
-# echo "Upgrading ..."
-# pip install --upgrade setuptools
-# pip install --upgrade pip
-# gem update --system
+echo "Upgrading ..."
+pip install --upgrade setuptools
+pip install --upgrade pip
+gem update --system
 
-# prompt "Install mac CLI [NOTE: Say NO to bash-completions since we have fzf]!"
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
+prompt "Install mac CLI [NOTE: Say NO to bash-completions since we have fzf]!"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
 
-# echo "Update packages"
-# pip3 install --upgrade pip setuptools wheel
-# mac update
+echo "Update packages"
+pip3 install --upgrade pip setuptools wheel
+mac update
 
-# echo "Cleaning up ..."
-# brew cleanup
-# brew cask cleanup
+echo "Cleaning up ..."
+brew cleanup
+brew cask cleanup
 
-# for fail in ${fails[@]}
-# do
-#   echo "Failed to install: $fail"
-# done
+for fail in ${fails[@]}
+do
+  echo "Failed to install: $fail"
+done
 
-# read -p "Run `mackup restore` after DropBox has done syncing"
+read -p "Run `mackup restore` after DropBox has done syncing"
 echo "Done"

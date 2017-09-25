@@ -10,22 +10,24 @@ brews=(
   mtr
   node
   openvpn
+  postgresql
+  pgcli
   nmap
   python
   ruby
   scala
   sbt
   tmux
-  wget
   zsh
   tree
   s3cmd
-  wget
+  vim --with-override-system-vi
+  wget --with-iri
   maven
+  mackup
 )
 
 casks=(
-  adobe-reader
   atom
   betterzipql
   cakebrew
@@ -34,31 +36,27 @@ casks=(
   firefox
   freemind
   google-chrome
-  google-drive
-  hosts
   intellij-idea-ce
   iterm2
   kindle
-  picasa
-  java
   slack
   screenhero
   skype
-  teleport
   vlc
   tunnelblick
   sublime-text
-  utorrent
+  visual-studio-code
 )
 
 pips=(
+  pip
   s4cmd
-  Glances
+  glances
   pythonpy
 )
 
 gems=(
-  git-up
+  bundle
 )
 
 npms=(
@@ -66,28 +64,33 @@ npms=(
   grunt
 )
 
-clibs=(
-  bpkg/bpkg
-)
-
-bkpgs=(
-  rauchg/wifi-password
+vscode=(
+  donjayamanne.python
+  dragos.scala-lsp
+  lukehoban.Go
+  ms-vscode.cpptools
+  rebornix.Ruby
+  redhat.java
 )
 
 ######################################## End of app list ########################################
 set +e
+set -x
 
-echo "Installing Xcode ..."
-xcode-select --install
 
 if test ! $(which brew); then
+  echo "Installing Xcode ..."
+  xcode-select --install
+
   echo "Installing Homebrew ..."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
   echo "Updating Homebrew ..."
   brew update
+  brew upgrade
 fi
 brew doctor
+brew tap homebrew/dupes
 
 fails=()
 
@@ -121,53 +124,62 @@ function proceed_prompt {
   fi
 }
 
-brew info ${brews[@]}
-proceed_prompt
-install 'brew install' ${brews[@]}
+# echo "Install Java"
+# brew cask install java
 
-brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
+# brew info ${brews[@]}
+# proceed_prompt
+# install 'brew install' ${brews[@]}
 
-brew cask info ${casks[@]}
-proceed_prompt
-install 'brew cask install --appdir=/Applications' ${casks[@]}
+# brew install caskroom/cask/brew-cask
+# brew tap caskroom/versions
+
+# brew cask info ${casks[@]}
+# proceed_prompt
+# install 'brew cask install --appdir=/Applications' ${casks[@]}
+
+echo "Install pip"
+install 'easy_install pip'
 
 # TODO: add info part of install
 install 'pip install' ${pips[@]}
-install 'gem install' ${gems[@]}
-install 'clib install' ${clibs[@]}
-install 'bpkg install' ${bpkgs[@]}
-install 'npm install -g' ${npms[@]}
+# install 'gem install' ${gems[@]}
+# install 'npm install -g' ${npms[@]}
+# install 'code --install-extension' ${vscode[@]}
 
-echo "Setting up zsh ..."
-curl -L http://install.ohmyz.sh | sh
-chsh -s $(which zsh)
-# TODO: Auto-set theme to "fino-time" in ~/.zshrc (using antigen?)
-curl -sSL https://get.rvm.io | bash -s stable  # required for some zsh-themes
+# echo "Setting up zsh ..."
+# curl -L http://install.ohmyz.sh | sh
+# chsh -s $(which zsh)
+# # TODO: Auto-set theme to "fino-time" in ~/.zshrc (using antigen?)
+# curl -sSL https://get.rvm.io | bash -s stable  # required for some zsh-themes
 
-echo "Setting git defaults ..."
-git config --global rerere.enabled true
-git config --global branch.autosetuprebase always
-git config --global credential.helper osxkeychain
-git config --global user.name $1
-git config --global user.email $2
+# echo "Setting git defaults ..."
+# git config --global rerere.enabled true
+# git config --global branch.autosetuprebase always
+# git config --global credential.helper osxkeychain
+# git config --global user.name $1
+# git config --global user.email $2
 
-echo "Upgrading ..."
-pip install --upgrade setuptools
-pip install --upgrade pip
-gem update --system
+# echo "Upgrading ..."
+# pip install --upgrade setuptools
+# pip install --upgrade pip
+# gem update --system
 
-echo "Cleaning up ..."
-brew cleanup
-brew cask cleanup
-brew linkapps
+# prompt "Install mac CLI [NOTE: Say NO to bash-completions since we have fzf]!"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install)"
 
-for fail in ${fails[@]}
-do
-  echo "Failed to install: $fail"
-done
+# echo "Update packages"
+# pip3 install --upgrade pip setuptools wheel
+# mac update
 
-echo "Run `mackup restore` after DropBox has done syncing"
+# echo "Cleaning up ..."
+# brew cleanup
+# brew cask cleanup
 
-read -p "Hit enter to run [OSX for Hackers] script..." c
-sh -c "$(curl -sL https://gist.githubusercontent.com/brandonb927/3195465/raw/osx-for-hackers.sh)"
+# for fail in ${fails[@]}
+# do
+#   echo "Failed to install: $fail"
+# done
+
+# read -p "Run `mackup restore` after DropBox has done syncing"
+echo "Done"

@@ -27,9 +27,9 @@ brews=(
   tmux
   trash
   tree
-  vim --with-override-system-vi
+  "vim --with-override-system-vi"
   watch
-  wget --with-iri
+  "wget --with-iri"
   zsh
 )
 

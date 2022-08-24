@@ -163,8 +163,8 @@ fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 echo "Install important software ..."
-brew tap homebrew/cask-versions
-install 'brew cask install' "${important_casks[@]}"
+# brew tap homebrew/cask-versions
+install 'brew install cask' "${important_casks[@]}"
 
 prompt "Install packages"
 install 'brew_install_or_upgrade' "${brews[@]}"
@@ -210,7 +210,7 @@ curl -L http://install.ohmyz.sh | sh
 chsh -s $(which zsh)
 
 prompt "Install software"
-install 'brew cask install' "${casks[@]}"
+install 'brew install cask' "${casks[@]}"
 
 prompt "Install secondary packages"
 install 'pip3 install --upgrade' "${pips[@]}"

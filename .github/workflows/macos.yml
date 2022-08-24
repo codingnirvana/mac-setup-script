@@ -12,6 +12,8 @@ jobs:
       
       - name: Setup MacOS Defaults
         run: ./defaults.sh
+        shell: bash
 
       - name: Setup Apps
         run: ./install.sh
+        shell: bash

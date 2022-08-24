@@ -40,7 +40,7 @@ casks=(
   docker
   firefox
   freemind
-  google-backup-and-sync
+  google-drive
   intellij-idea-ce
   iterm2
   kindle

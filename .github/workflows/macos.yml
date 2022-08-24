@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set Permissions
+        run: chmod +x *.sh
+        shell: bash
       
       - name: Setup MacOS Defaults
         run: ./defaults.sh
